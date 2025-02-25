@@ -14,7 +14,7 @@ import Focus from "@tiptap/extension-focus";
 import Typography from "@tiptap/extension-typography";
 import { Button } from "./ui/button";
 import { useEffect } from "react";
-import { CornerUpLeft, CornerUpRight, Ruler } from "lucide-react"
+import { BoldIcon, CornerUpLeft, CornerUpRight, ImageIcon, ItalicIcon, Ruler, StrikethroughIcon } from "lucide-react"
 
 interface RichTextEditorProps {
   content: string;
@@ -77,19 +77,19 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
-          Bold
+          <BoldIcon size={16} />
         </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
-          Italic
+          <ItalicIcon size={16} />
         </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleStrike().run()}
         >
-          Strike
+          <StrikethroughIcon size={16} />
         </Button>
         {([1, 2, 3, 4, 5, 6] as const).map((level) => (
           <Button
@@ -104,12 +104,12 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={addImage}
         >
-          Image
+          <ImageIcon size={16} />
         </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-          <Ruler size={16} /> Horizontal line
+          <Ruler size={16} />
         </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
