@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Bold from "@tiptap/extension-bold";
@@ -11,8 +11,21 @@ import Dropcursor from "@tiptap/extension-dropcursor";
 import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Focus from "@tiptap/extension-focus";
+import Typography from "@tiptap/extension-typography";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import Underline from "@tiptap/extension-underline";
 import { Button } from "./ui/button";
 import { useEffect } from "react";
+import {
+  BoldIcon,
+  CornerUpLeft,
+  CornerUpRight,
+  ImageIcon,
+  ItalicIcon,
+  Ruler,
+  StrikethroughIcon,
+  UnderlineIcon,
+} from "lucide-react";
 
 interface RichTextEditorProps {
   content: string;
@@ -22,11 +35,12 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Focus.configure({ className: 'has-focus',
-        mode: 'all',}),   
+      Typography,
+      Focus.configure({ className: "has-focus", mode: "all" }),
       Bold,
       Italic,
       Strike,
+      Underline,
       Heading.configure({ levels: [1, 2, 3, 4, 5, 6] }),
       Image.extend({
         addAttributes() {
@@ -38,12 +52,24 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
           };
         },
       }),
-      Dropcursor,
+      Dropcursor.configure({
+        color: "black",
+        class: "custom-dropcursor",
+      }),
+      HorizontalRule.extend({
+        addAttributes() {
+          return {
+            style: {
+              default: "border: 1px solid purple;",
+            },
+          };
+        },
+      }),
       Document,
       Paragraph,
       Placeholder.configure({
-        placeholder: "Digite algo..."
-      })
+        placeholder: "Digite algo...",
+      }),
     ],
     content: content,
   });
@@ -68,45 +94,70 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   };
 
   return (
-    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-xl">
+    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-4xl">
       <div className="mb-2 flex space-x-2 border-b pb-2">
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
-          Bold
+          <BoldIcon size={16} />
         </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
-          Italic
+          <ItalicIcon size={16} />
         </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleStrike().run()}
         >
-          Strike
+          <StrikethroughIcon size={16} />
+        </Button>
+        <Button
+          className="px-2 py-1 bg-gray-200 rounded"
+          onClick={() => editor.chain().focus().setUnderline().run()}
+        >
+          <UnderlineIcon size={16} />
         </Button>
         {([1, 2, 3, 4, 5, 6] as const).map((level) => (
           <Button
             key={level}
             className="px-2 py-1 bg-gray-200 rounded"
-            onClick={() => editor.chain().focus().toggleHeading({ level }).run()}
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level }).run()
+            }
           >
             H{level}
           </Button>
         ))}
+        <Button className="px-2 py-1 bg-gray-200 rounded" onClick={addImage}>
+          <ImageIcon size={16} />
+        </Button>
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
-          onClick={addImage}
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
-          Image
+          <Ruler size={16} />
+        </Button>
+        <Button
+          className="px-2 py-1 bg-gray-200 rounded"
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={!editor.can().chain().focus().undo().run()}
+        >
+          <CornerUpLeft size={16} />
+        </Button>
+        <Button
+          className="px-2 py-1 bg-gray-200 rounded"
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={!editor.can().chain().focus().redo().run()}
+        >
+          <CornerUpRight size={16} />
         </Button>
       </div>
       <EditorContent
         editor={editor}
-        className="p-4 border rounded-md overflow-y-auto max-h-96 focus:outline-none"
+        className="p-4 border rounded-md overflow-y-auto max-h-96 bg-zinc-200 text-black focus:outline-none"
         style={{ maxWidth: "100%" }}
         autoFocus={true}
       />
