@@ -33,13 +33,16 @@
 
   ol {
     list-style: decimal;
+    margin-left: 1.5rem;
   }
   
   ul {
     list-style: disc;
+    margin-left: 1.5rem;
   }
   
   menu {
     list-style: disc;
+    margin-left: 1.5rem;
   }
 }
