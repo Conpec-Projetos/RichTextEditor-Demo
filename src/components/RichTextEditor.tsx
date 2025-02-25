@@ -11,8 +11,10 @@ import Dropcursor from "@tiptap/extension-dropcursor";
 import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Focus from "@tiptap/extension-focus";
+import Typography from "@tiptap/extension-typography";
 import { Button } from "./ui/button";
 import { useEffect } from "react";
+import { CornerUpLeft, CornerUpRight, Ruler } from "lucide-react"
 
 interface RichTextEditorProps {
   content: string;
@@ -22,6 +24,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      Typography,
       Focus.configure({ className: 'has-focus',
         mode: 'all',}),   
       Bold,
@@ -68,7 +71,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   };
 
   return (
-    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-xl">
+    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-4xl">
       <div className="mb-2 flex space-x-2 border-b pb-2">
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
@@ -102,6 +105,37 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
           onClick={addImage}
         >
           Image
+        </Button>
+        <Button
+          className="px-2 py-1 bg-gray-200 rounded"
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}>
+          <Ruler size={16} /> Horizontal line
+        </Button>
+        <Button
+          className="px-2 py-1 bg-gray-200 rounded"
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={
+            !editor.can()
+              .chain()
+              .focus()
+              .undo()
+              .run()
+          }
+        >
+          <CornerUpLeft size={16} />
+        </Button>
+        <Button
+          className="px-2 py-1 bg-gray-200 rounded"
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={
+            !editor.can()
+              .chain()
+              .focus()
+              .redo()
+              .run()
+          }
+        >
+          <CornerUpRight size={16} />
         </Button>
       </div>
       <EditorContent
