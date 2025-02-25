@@ -94,8 +94,8 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   };
 
   return (
-    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-4xl">
-      <div className="mb-2 flex space-x-2 border-b pb-2">
+    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-3xl">
+      <div className="mb-2 flex flex-wrap space-x-2 gap-2 border-b pb-2">
         <Button
           className="px-2 py-1 bg-gray-200 rounded"
           onClick={() => editor.chain().focus().toggleBold().run()}
