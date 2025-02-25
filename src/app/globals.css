@@ -7,6 +7,11 @@
     outline: none;
   }
 
+  .custom-dropcursor {
+    height: 5px !important;
+    border-width: 2px !important;
+  }
+
   h1 {
     font-size: 2.25rem;
   }

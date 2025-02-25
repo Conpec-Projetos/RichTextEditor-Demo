@@ -42,6 +42,10 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
           };
         },
       }),
+      Dropcursor.configure({
+        color: "black",
+        class: "custom-dropcursor",
+      }),
       HorizontalRule.extend({
         addAttributes() {
           return {
@@ -51,7 +55,6 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
           };
         },
       }),
-      Dropcursor,
       Document,
       Paragraph,
       Placeholder.configure({
@@ -150,7 +153,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
       </div>
       <EditorContent
         editor={editor}
-        className="p-4 border rounded-md overflow-y-auto max-h-96 bg-zinc-200 focus:outline-none"
+        className="p-4 border rounded-md overflow-y-auto max-h-96 bg-zinc-200 text-black focus:outline-none"
         style={{ maxWidth: "100%" }}
         autoFocus={true}
       />
