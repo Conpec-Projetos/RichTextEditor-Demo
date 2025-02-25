@@ -12,6 +12,7 @@ import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Focus from "@tiptap/extension-focus";
 import Typography from "@tiptap/extension-typography";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { Button } from "./ui/button";
 import { useEffect } from "react";
 import { BoldIcon, CornerUpLeft, CornerUpRight, ImageIcon, ItalicIcon, Ruler, StrikethroughIcon } from "lucide-react"
@@ -37,6 +38,15 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
             src: {},
             style: {
               default: "display: block; margin: 0 auto;",
+            },
+          };
+        },
+      }),
+      HorizontalRule.extend({
+        addAttributes() {
+          return {
+            style: {
+              default: "border: 1px solid purple;",
             },
           };
         },
@@ -140,7 +150,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
       </div>
       <EditorContent
         editor={editor}
-        className="p-4 border rounded-md overflow-y-auto max-h-96 focus:outline-none"
+        className="p-4 border rounded-md overflow-y-auto max-h-96 bg-zinc-200 focus:outline-none"
         style={{ maxWidth: "100%" }}
         autoFocus={true}
       />
