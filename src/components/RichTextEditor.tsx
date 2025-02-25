@@ -63,7 +63,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   const addImage = () => {
     const url = window.prompt("URL");
     if (url) {
-      editor.chain().focus().setImage({ src: url, style: "display: block; margin: 0 auto;" }).run();
+      editor.chain().focus().setImage({ src: url }).run();
     }
   };
 
