@@ -15,7 +15,6 @@ import Typography from "@tiptap/extension-typography";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import Underline from "@tiptap/extension-underline";
 import { Button } from "./ui/button";
-import { useEffect } from "react";
 import {
   BoldIcon,
   CornerUpLeft,
@@ -74,14 +73,6 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
     content: content,
   });
 
-  useEffect(() => {
-    for (let i = 0; i < 10; i++) {
-      setTimeout(() => {
-        console.log(editor?.getHTML());
-      }, 6000 * i);
-    }
-  }, [editor]);
-
   if (!editor) {
     return <p>Loading editor...</p>;
   }
@@ -92,6 +83,11 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
       editor.chain().focus().setImage({ src: url }).run();
     }
   };
+
+  const saveContent = () => {
+    localStorage.setItem("content", editor.getHTML());
+    console.log(editor.getHTML());
+  }
 
   return (
     <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-3xl">
@@ -163,7 +159,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
       />
       <Button
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
-        onClick={() => console.log(editor.getHTML())}
+        onClick={() => saveContent()}
       >
         Save Content
       </Button>

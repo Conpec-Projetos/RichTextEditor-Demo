@@ -10,6 +10,7 @@ export default function Home() {
     <div className="h-screen w-screen flex flex-col items-center justify-center">
       <p>Home</p>
       <Button onClick={() => router.push("/editor")}>Go to editor</Button>
+      <Button onClick={() => router.push("/viewer")}>Go to viewer</Button>
     </div>
   );
 }
