@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-center">
       <p>Home</p>
-      <Button onClick={() => router.push("/editor")}>Go to editor</Button>
-      <Button onClick={() => router.push("/viewer")}>Go to viewer</Button>
+      <Button onClick={() => router.push("/editor")} className="text-[#FCFCFC]">Go to editor</Button>
+      <Button onClick={() => router.push("/viewer")} className="text-[#FCFCFC]">Go to viewer</Button>
     </div>
   );
 }
