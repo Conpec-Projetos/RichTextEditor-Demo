@@ -90,28 +90,28 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
   }
 
   return (
-    <div className="p-4 border rounded-xl bg-rose-400 text-black max-w-3xl">
+    <div className="p-4 border rounded-xl bg-[#F66C0E] text-[#1A1A1A] max-w-3xl">
       <div className="mb-2 flex flex-wrap justify-evenly md:justify-center space-x-2 gap-2 border-b pb-2">
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
           <BoldIcon size={16} />
         </Button>
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
           <ItalicIcon size={16} />
         </Button>
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().toggleStrike().run()}
         >
           <StrikethroughIcon size={16} />
         </Button>
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().setUnderline().run()}
         >
           <UnderlineIcon size={16} />
@@ -119,7 +119,7 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
         {([1, 2, 3, 4, 5, 6] as const).map((level) => (
           <Button
             key={level}
-            className="px-2 py-1 bg-gray-200 rounded"
+            className="px-2 py-1 bg-[#FCFCFC] rounded"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level }).run()
             }
@@ -127,24 +127,24 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
             H{level}
           </Button>
         ))}
-        <Button className="px-2 py-1 bg-gray-200 rounded" onClick={addImage}>
+        <Button className="px-2 py-1 bg-[#FCFCFC] rounded" onClick={addImage}>
           <ImageIcon size={16} />
         </Button>
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
           <Ruler size={16} />
         </Button>
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().chain().focus().undo().run()}
         >
           <CornerUpLeft size={16} />
         </Button>
         <Button
-          className="px-2 py-1 bg-gray-200 rounded"
+          className="px-2 py-1 bg-[#FCFCFC] rounded"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().chain().focus().redo().run()}
         >
@@ -153,12 +153,12 @@ export default function RichTextEditor({ content }: RichTextEditorProps) {
       </div>
       <EditorContent
         editor={editor}
-        className="p-4 border rounded-md overflow-y-auto max-h-96 bg-zinc-200 text-black focus:outline-none"
+        className="p-4 border rounded-md overflow-y-auto max-h-96 bg-[#FCFCFC] text-[#1A1A1A] focus:outline-none"
         style={{ maxWidth: "100%" }}
         autoFocus={true}
       />
       <Button
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        className="mt-4 px-4 py-2 bg-[#0F99F5] text-[#FCFCFC] rounded-lg"
         onClick={() => saveContent()}
       >
         Save Content

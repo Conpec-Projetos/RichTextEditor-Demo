@@ -56,8 +56,8 @@ export default function Viewer() {
 
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
-      <div className="max-w-3xl bg-rose-400 text-black p-4 rounded-xl border">
-        <div className="p-4 border rounded-md overflow-y-auto max-h-96 bg-zinc-200 text-black focus:outline-none max-w-full">
+      <div className="max-w-3xl bg-[#F66C0E] p-4 rounded-xl border">
+        <div className="p-4 border rounded-md overflow-y-auto max-h-96 bg-[#FCFCFC] text-[#1A1A1A] focus:outline-none max-w-full">
           {parse(content, options)}
         </div>
       </div>
